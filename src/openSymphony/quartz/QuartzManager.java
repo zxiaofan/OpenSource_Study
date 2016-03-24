@@ -8,6 +8,8 @@
  */
 package openSymphony.quartz;
 
+import javax.annotation.Resource;
+
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.Scheduler;
@@ -30,6 +32,9 @@ public class QuartzManager {
     private static String TRIGGER_GROUP_NAME = "trigger_name_default";
 
     private static JobDataMap jobDataMapDefault = new JobDataMap();
+
+    @Resource(name = "scheduler")
+    public Scheduler scheduler1;
 
     /**
      * 构造函数.

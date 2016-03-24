@@ -1,11 +1,4 @@
-/*
- * 文件名：IPullBusiness.java
- * 版权：Copyright 2007-2015 517na Tech. Co. Ltd. All Rights Reserved. 
- * 描述： IPullBusiness.java
- * 修改人：tashan
- * 修改时间：2015年4月14日
- * 修改内容：新增
- */
+
 package openSymphony.quartz.listener;
 
 /**

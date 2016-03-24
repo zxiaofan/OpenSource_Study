@@ -8,6 +8,11 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+/**
+ * @author yunhai
+ *
+ *         用监听器启动任务，代替main启动
+ */
 public class StartUpListener implements ServletContextListener {
 
     /**

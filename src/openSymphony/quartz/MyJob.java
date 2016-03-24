@@ -26,6 +26,9 @@ public class MyJob implements Job {
      */
     @Override
     public void execute(JobExecutionContext jobexecutioncontext) throws JobExecutionException {
+        // jobDataMap存放所需参数，可由此处取出使用
+        // JobDataMap jobDataMap = jobexecutioncontext.getTrigger().getJobDataMap();
+        // String[] carriers = (String[]) jobDataMap.get("carriers");
         System.out.println("execute myJob:" + sdf.format(new Date()));
     }
 
