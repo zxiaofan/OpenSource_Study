@@ -8,6 +8,9 @@
  */
 package openSymphony.quartz.listener;
 
+import javax.annotation.Resource;
+
+import org.quartz.Scheduler;
 import org.springframework.stereotype.Component;
 
 import openSymphony.quartz.MyJob;
@@ -19,17 +22,23 @@ import openSymphony.quartz.QuartzManager;
  */
 @Component
 public class StartBusiness implements IStartBusiness {
+    @Resource(name = "scheduler")
+    public Scheduler scheduler;
+
     /**
      * 定时器.
      */
-    static String cronExpression = "0/8 * * * * ?"; // 每8秒执行一次
+    static String cronExpression = "0/5 * * * * ?"; // 每5秒执行一次
 
     /**
      * {@inheritDoc}.
      */
     @Override
     public void startWork() throws Exception {
-        QuartzManager.addJob(null, "jobName", MyJob.class, null, cronExpression);
+        // QuartzManager.addJob(null, "jobName", MyJob.class, null, cronExpression);
+        //
+        // spring注入Scheduler，单例
+        QuartzManager.addJob(scheduler, MyJob.class, cronExpression);
     }
 
 }

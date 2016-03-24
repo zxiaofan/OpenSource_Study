@@ -8,8 +8,6 @@
  */
 package openSymphony.quartz;
 
-import javax.annotation.Resource;
-
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.Scheduler;
@@ -33,15 +31,44 @@ public class QuartzManager {
 
     private static JobDataMap jobDataMapDefault = new JobDataMap();
 
-    @Resource(name = "scheduler")
-    public Scheduler scheduler1;
-
     /**
      * 构造函数.
      * 
      */
     private QuartzManager() {
         throw new RuntimeException("This is util class,can not instance!");
+    }
+
+    /**
+     * 添加任务.
+     * 
+     * @param scheduler
+     *            定时容器
+     * @param jobClass
+     *            任务的类型
+     * @param cronExpression
+     *            启动时间
+     * @throws Exception
+     *             e
+     */
+    public static void addJob(Scheduler scheduler, Class<? extends Job> jobClass, String cronExpression) throws Exception {
+        if (null == jobClass || null == cronExpression || cronExpression.trim().length() == 0) {
+            throw new RuntimeException("scheduler/jobName/jobClass/cronExpression/jobDataMap/nextFireTime can not null");
+        }
+        if (null == scheduler) {
+            scheduler = sf.getScheduler();
+        }
+        String jobName = JOB_GROUP_NAME;
+        JobDetailImpl jobDetail = new JobDetailImpl();
+        jobDetail.setName(jobName);
+        jobDetail.setGroup(jobName);
+        jobDetail.setJobClass(jobClass);
+        CronTriggerImpl trigger = new CronTriggerImpl();
+        trigger.setCronExpression(cronExpression);
+        trigger.setName(jobName);
+        trigger.setGroup(jobName);
+        scheduler.scheduleJob(jobDetail, trigger);
+        scheduler.start();
     }
 
     /**
@@ -64,7 +91,7 @@ public class QuartzManager {
         if (null == jobClass || null == cronExpression || cronExpression.trim().length() == 0) {
             throw new RuntimeException("scheduler/jobName/jobClass/cronExpression/jobDataMap/nextFireTime can not null");
         }
-        if (null == scheduler) {
+        if (null == scheduler) { // 不建议如此使用，会new 多个Scheduler，建议Scheduler不能为空，用Spring单例注入传入此参数
             scheduler = sf.getScheduler();
         }
         if (null == jobName || jobName.trim().length() == 0) {
