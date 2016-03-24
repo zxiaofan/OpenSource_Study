@@ -9,4 +9,18 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+<!-- spring 配置 begin-->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<!-- 主配置文件, 其余模块配置文件在app-context.xml进行加载 -->
+		<param-value>
+			classpath:config/spring/app-context.xml,
+		</param-value>
+	</context-param>
+   	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+  <listener>
+		<listener-class>openSymphony.quartz.listener.StartUpListener</listener-class>
+	</listener>
 </web-app>

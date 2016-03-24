@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+	
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+      	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+      	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
+      	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "
+	>
+	
+<!-- 	<import resource="classpath:com/better517na/config/spring/app-context-quartz.xml"/>
+	
+    <bean id="scheduler" class="com.better517na.javaPolicyObtainService.factory.SchedulerFactoryBean">  -->
+	</bean> 
+	<!-- 对com包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
+	<context:component-scan base-package="openSymphony.quartz" />
+
+	<!-- 定时器 -->
+	<task:annotation-driven/> 
+	<!-- Aspect -->
+	<aop:aspectj-autoproxy />
+	<!-- 日志组件 -->
+    <bean id="properties"  class="java.util.Properties" lazy-init="true">
+	    <constructor-arg>
+	    	<props> 
+                <prop key="AppName">${log.AppName}</prop>
+                <prop key="AppRecord">${log.AppRecord}</prop>
+                <prop key="DebugRecord">${log.DebugRecord}</prop>
+                <prop key="jdbc.driver">${log.jdbc.driver}</prop>
+                <prop key="downLoadDiretory">${log.download.Directory}</prop>
+                <prop key="AccUrl">${log.acc.jdbc.url}</prop>
+                <prop key="AccUserName">${log.acc.jdbc.username}</prop>
+                <prop key="AccPassword">${log.acc.jdbc.password}</prop>
+
+                <prop key="AppUrl">${log.app.jdbc.url}</prop>
+                <prop key="AppUserName">${log.app.jdbc.username}</prop>
+                <prop key="AppPassword">${log.app.jdbc.password}</prop>
+
+                <prop key="CacheHitUrl">${log.cachehit.jdbc.url}</prop>
+                <prop key="CacheHitUserName">${log.cachehit.jdbc.username}</prop>
+                <prop key="CacheHitPassword">${log.cachehit.jdbc.password}</prop>
+
+                <prop key="DebugUrl">${log.debug.jdbc.url}</prop>
+                <prop key="DebugUserName">${log.debug.jdbc.username}</prop>
+                <prop key="DebugPassword">${log.debug.jdbc.password}</prop>
+
+                <prop key="ExceptionUrl">${log.exception.jdbc.url}</prop>
+                <prop key="ExceptionUserName">${log.exception.jdbc.username}</prop>
+                <prop key="ExceptionPassword">${log.exception.jdbc.password}</prop>
+
+                <prop key="InteractionUrl">${log.interaction.jdbc.url}</prop>
+                <prop key="InteractionUserName">${log.interaction.jdbc.username}</prop>
+                <prop key="InteractionPassword">${log.interaction.jdbc.password}</prop>
+
+                <prop key="SlowCallUrl">${log.slowcall.jdbc.url}</prop>
+                <prop key="SlowCallUserName">${log.slowcall.jdbc.username}</prop>
+                <prop key="SlowCallPassword">${log.slowcall.jdbc.password}</prop>
+
+                <prop key="UiaccUrl">${log.uiacc.jdbc.url}</prop>
+                <prop key="UiaccUserName">${log.uiacc.jdbc.username}</prop>
+                <prop key="UiaccPassword">${log.uiacc.jdbc.password}</prop>
+                <prop key="Directory">${log.Directory}</prop>
+                <prop key="DivisionFileSize">${log.DivisionFileSize}</prop>
+                <prop key="DivisionFileTime">${log.DivisionFileTime}</prop> 	
+            </props>
+	    </constructor-arg>
+	</bean>
+<!-- 	<import resource="classpath:META-INF/cxf/cxf.xml" /> -->
+<!-- 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" /> -->
+</beans>
