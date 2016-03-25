@@ -52,6 +52,5 @@ public class ClientTest {
         } catch (TException e) {
             e.printStackTrace();
         }
-
     }
 }
