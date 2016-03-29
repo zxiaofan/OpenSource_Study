@@ -5,5 +5,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/commons-beanutils-1.8.2.jar"/>
 	<classpathentry kind="lib" path="lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/poi/poi-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="lib/poi/poi-ooxml-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="lib/poi/poi-ooxml-schemas-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="lib/poi/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
