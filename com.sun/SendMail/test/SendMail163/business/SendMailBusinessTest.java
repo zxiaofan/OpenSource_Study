@@ -37,11 +37,11 @@ public class SendMailBusinessTest {
         SendMailBusiness sendmail = new SendMailBusiness();
         SendMailVo sendMailVo = new SendMailVo();
         sendMailVo.setHost("smtp.ym.163.com");// smtp.mail.yahoo.com.cn //smtp.ym.163.com
-        String name = "zeng@cxcy.cf";
+        String name = "xxx@xxx.cf";
         sendMailVo.setUsername(name);
-        sendMailVo.setPassword("zeng000");
+        sendMailVo.setPassword("zxiaofan.com");
         // 暂无法判断邮件是否被退回(收件人地址有误)
-        sendMailVo.setTo("yunhai@517na.com");// 接收者
+        sendMailVo.setTo("xxx@xxx.com");// 接收者
         sendMailVo.setFrom(name);// 发送者名字
         sendMailVo.setSubject("[主题]你好，这是测试邮件！");
         sendMailVo.setContent("[正文]你好,这是一个带多附件的测试！");
