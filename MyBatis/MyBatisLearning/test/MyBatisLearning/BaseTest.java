@@ -17,7 +17,7 @@ import org.springframework.util.Log4jConfigurer;
  * 
  * @Transactional
  */
-@ContextConfiguration("/src/config/app-context*.xml")
+@ContextConfiguration("/MyBatisLearning/config/app-context-mybatis.xml")
 public class BaseTest {
 
     /**
