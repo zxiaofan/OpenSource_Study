@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+ 	<!-- 抽离连接数据库的配置文件，引用DBRoute.properties配置文件 -->
+    <properties resource="config/DBRoute.properties"/>
+	
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<!-- 配置数据库连接信息 -->
 			<dataSource type="POOLED">
-				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<!-- <property name="driver" value="com.mysql.jdbc.Driver" />
 				<property name="url" value="jdbc:mysql://localhost:3307/mybatis" />
 				<property name="username" value="username" />
-				<property name="password" value="pwd" />
+				<property name="password" value="pwd" /> -->
+				
+				 <!-- value属性值引用DBRoute.properties配置文件中配置的值 -->
+                <property name="driver" value="${driver}" />
+                <property name="url" value="${url}" />
+                <property name="username" value="${username}" />
+                <property name="password" value="${password}" />
 			</dataSource>
 		</environment>
 	</environments>
