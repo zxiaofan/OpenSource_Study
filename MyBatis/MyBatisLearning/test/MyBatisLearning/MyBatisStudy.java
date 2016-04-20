@@ -10,11 +10,14 @@ package MyBatisLearning;
 
 import java.io.InputStream;
 
+import javax.annotation.Resource;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
+import dao.impl.GetInfoDao;
 import model.StudentVo;
 
 /**
@@ -22,7 +25,10 @@ import model.StudentVo;
  * 
  * @author yunhai
  */
-public class MyBatisStudy {
+public class MyBatisStudy extends BaseTest {
+    @Resource(name = "getInfoDao")
+    private GetInfoDao gInfoDao;
+
     @Test
     public void getInfo() {
         // mybatis的配置文件
@@ -44,5 +50,15 @@ public class MyBatisStudy {
         // 执行查询返回一个唯一user对象的sql
         StudentVo user = session.selectOne(statement, 1);
         System.out.println(user.getName());
+    }
+
+    /**
+     * MyBatis+Spring整合.
+     * 
+     */
+    @Test
+    public void testMyBatisSpring() {
+        StudentVo vo = gInfoDao.getInfo(1);
+        System.out.println(vo.getName());
     }
 }
