@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE mapper    
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"    
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的
+例如namespace="me.gacl.mapping.mpper"就是me.gacl.mapping(包名)+mapper
+ -->
+<mapper namespace="src.config.mapper">
+<!-- parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型 -->
+    <select id="getUser" parameterType="int" 
+        resultType="model.StudentVo">
+        select * from student where id=#{id}
+    </select>
+</mapper>
