@@ -1,4 +1,4 @@
-package dao;
+package zxiaofan.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
 

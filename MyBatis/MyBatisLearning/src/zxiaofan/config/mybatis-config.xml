@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
- 	<!-- 抽离连接数据库的配置文件，引用DBRoute.properties配置文件 -->
-    <properties resource="config/DBRoute.properties"/>
+ 	<!-- 抽离连接数据库的配置文件，引用jdbc.properties配置文件 -->
+    <properties resource="zxiaofan/config/jdbc.properties"/>
 	
 	<environments default="development">
 		<environment id="development">
@@ -23,7 +23,7 @@
 		</environment>
 	</environments>
 	<mappers>
-		<!-- 注册mapper.xml文件  -->
-		<mapper resource="config/mapper.xml" />
+		<!-- 注册mapper-sql.xml文件  -->
+		<mapper resource="zxiaofan/config/mybatis-sql.xml" />
 	</mappers>
 </configuration>

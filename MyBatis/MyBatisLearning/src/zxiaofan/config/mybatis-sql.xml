@@ -8,7 +8,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <mapper namespace="src.config.mapper">
 <!-- parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型 -->
     <select id="getUser" parameterType="int" 
-        resultType="model.StudentVo">
+        resultType="zxiaofan.model.StudentVo">
         select * from student where id=#{id}
     </select>
 </mapper>

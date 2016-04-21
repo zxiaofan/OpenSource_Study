@@ -1,4 +1,4 @@
-package dao.impl;
+package zxiaofan.dao.impl;
 
 import javax.annotation.Resource;
 

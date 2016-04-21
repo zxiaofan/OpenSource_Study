@@ -17,22 +17,22 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
-import dao.impl.GetInfoDao;
-import model.StudentVo;
+import zxiaofan.model.StudentVo;
+import zxiaofan.service.IUserService;
 
 /**
  * 最简单最基础的Mybatis用法
  * 
  * @author yunhai
  */
-public class MyBatisStudy extends BaseTest {
-    @Resource(name = "getInfoDao")
-    private GetInfoDao gInfoDao;
+public class MyBatisStudy {
+    @Resource(name = "userService")
+    private IUserService gInfoDao;
 
     @Test
     public void getInfo() {
         // mybatis的配置文件
-        String resource = "config/mybatis-config.xml";
+        String resource = "zxiaofan/config/mybatis-config.xml";
         // 使用类加载器加载mybatis的配置文件（它也加载关联的映射文件）
         InputStream is = MyBatisStudy.class.getClassLoader().getResourceAsStream(resource);
         // 构建sqlSession的工厂

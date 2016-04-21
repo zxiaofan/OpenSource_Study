@@ -6,7 +6,7 @@
  * 修改时间：2016年4月20日
  * 修改内容：新增
  */
-package model;
+package zxiaofan.model;
 
 /**
  * 

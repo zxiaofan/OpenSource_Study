@@ -6,11 +6,11 @@
  * 修改时间：2016年4月20日
  * 修改内容：新增
  */
-package dao.impl;
+package zxiaofan.dao.impl;
 
 import org.springframework.stereotype.Component;
 
-import model.StudentVo;
+import zxiaofan.model.StudentVo;
 
 /**
  * 
