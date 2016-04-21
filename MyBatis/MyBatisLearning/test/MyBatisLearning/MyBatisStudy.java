@@ -25,7 +25,7 @@ import zxiaofan.service.IUserService;
  * 
  * @author yunhai
  */
-public class MyBatisStudy {
+public class MyBatisStudy extends BaseTest {
     @Resource(name = "userService")
     private IUserService gInfoDao;
 
@@ -48,7 +48,7 @@ public class MyBatisStudy {
          */
         String statement = "src.config.mapper.getUser";// 映射sql的标识字符串
         // 执行查询返回一个唯一user对象的sql
-        StudentVo user = session.selectOne(statement, 1);
+        StudentVo user = session.selectOne(statement, 5);
         System.out.println(user.getName());
     }
 
@@ -58,7 +58,7 @@ public class MyBatisStudy {
      */
     @Test
     public void testMyBatisSpring() {
-        StudentVo vo = gInfoDao.getInfo(1);
+        StudentVo vo = gInfoDao.getInfo(5);
         System.out.println(vo.getName());
     }
 }

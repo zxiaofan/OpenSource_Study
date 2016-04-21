@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="  
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd  
+            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd  
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
+	default-autowire="byName" default-lazy-init="false">
+
+<!-- Spring-Mybatis 整合 主配置文件 -->
+
+	<context:property-placeholder location="classpath:zxiaofan/config/jdbc2.properties" />
+
+	<context:component-scan base-package="zxiaofan" />
+
+	<context:annotation-config />
+
+	<bean id="sampleDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass">
+			<value>${db.driverClassName}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${db.url}</value>
+		</property>
+		<property name="user">
+			<value>${db.username}</value>
+		</property>
+		<property name="password">
+			<value>${db.password}</value>
+		</property>
+		<property name="initialPoolSize">
+			<value>${db.initialPoolSize}</value>
+		</property>
+		<property name="minPoolSize">
+			<value>${db.minPoolSize}</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>${db.maxPoolSize}</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>${db.maxIdleTime}</value>
+		</property>
+		<property name="acquireIncrement">
+			<value>${db.acquireIncrement}</value>
+		</property>
+		<property name="acquireRetryAttempts">
+			<value>${db.acquireRetryAttempts}</value>
+		</property>
+		<property name="acquireRetryDelay">
+			<value>${db.acquireRetryDelay}</value>
+		</property>
+		<property name="maxStatements">
+			<value>${db.maxStatements}</value>
+		</property>
+		<property name="maxStatementsPerConnection">
+			<value>${db.maxStatementsPerConnection}</value>
+		</property>
+		<property name="checkoutTimeout">
+			<value>${db.checkoutTimeout}</value>
+		</property>
+		<property name="breakAfterAcquireFailure">
+			<value>${db.breakAfterAcquireFailure}</value>
+		</property>
+	</bean>
+
+	<bean id="sampleSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="sampleDataSource" />
+		<property name="configLocation" value="zxiaofan/config/mybatis-config.xml" />
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sampleSqlSessionFactory" />
+	</bean>
+</beans> 
