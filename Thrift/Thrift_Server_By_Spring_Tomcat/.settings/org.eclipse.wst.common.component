@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Thrift_Server_By_Spring_Tomcat">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="context-root" value="Thrift_Server_By_Spring_Tomcat"/>
+        <property name="java-output-path" value="/Thrift_Server_By_Spring_Tomcat/build/classes"/>
+    </wb-module>
+</project-modules>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+
+    <!-- Aspect -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+	<bean id="ThriftServiceCenter" class="thrift.proxy.ThriftServerProxy">  
+        <property name="port">
+		  <value>${thrift.port}</value>
+		</property>
+        <property name="processorMap"> 
+            <map>  
+                <entry key="com.zxiaofan.thriftServer.service" value-ref="helloThrift"></entry>  
+            </map>  
+        </property>     
+    </bean>  
+  
+</beans>
