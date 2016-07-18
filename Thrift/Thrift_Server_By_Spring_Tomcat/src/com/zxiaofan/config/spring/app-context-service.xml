@@ -10,7 +10,7 @@
 
     <!-- Aspect -->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
-	<bean id="ThriftServiceCenter" class="thrift.proxy.ThriftServerProxy">  
+	<bean id="ThriftServiceCenter" class="thrift.ThriftServerProxy">  
         <property name="port">
 		  <value>${thrift.port}</value>
 		</property>
