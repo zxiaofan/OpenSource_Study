@@ -12,7 +12,7 @@ import org.apache.thrift.TException;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Component;
 
-import thrift.IThriftService.Iface;
+import com.zxiaofan.thrift.IThriftService.Iface;
 
 /**
  * 
@@ -35,7 +35,7 @@ public class HelloThrift implements Iface {
      */
     @Override
     public String getRandom() throws TException {
-        return "random";
+        return "github.zxiaofan.com";
     }
 
 }
