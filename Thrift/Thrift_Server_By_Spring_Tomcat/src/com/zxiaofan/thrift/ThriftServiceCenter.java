@@ -27,9 +27,8 @@ import org.springframework.beans.factory.InitializingBean;
 
 /**
  * @author yunhai
- * @param <T>
  */
-public class ThriftServerProxy<T> implements Runnable, InitializingBean, DisposableBean {
+public class ThriftServiceCenter implements Runnable, InitializingBean, DisposableBean {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     /**

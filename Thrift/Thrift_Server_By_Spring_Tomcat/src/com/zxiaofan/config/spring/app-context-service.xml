@@ -10,13 +10,14 @@
 
     <!-- Aspect -->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
-	<bean id="ThriftServiceCenter" class="thrift.ThriftServerProxy">  
+	<bean id="ThriftServiceCenter" class="com.zxiaofan.thrift.ThriftServiceCenter">  
         <property name="port">
 		  <value>${thrift.port}</value>
 		</property>
         <property name="processorMap"> 
             <map>  
-                <entry key="com.zxiaofan.thriftServer.service" value-ref="helloThrift"></entry>  
+            <!-- key为thrift接口地址,value-ref为beanName -->
+                <entry key="com.zxiaofan.thrift.IThriftService" value-ref="helloThrift"></entry>  
             </map>  
         </property>     
     </bean>  
