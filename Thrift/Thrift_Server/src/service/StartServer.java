@@ -31,7 +31,7 @@ public class StartServer {
 
         try {
             // 定义传输的socket，设置服务端口为6789
-            TServerSocket serverTransport = new TServerSocket(6789);
+            TServerSocket serverTransport = new TServerSocket(1234);
 
             // 设置协议工厂为 TBinaryProtocol.Factory
             Factory proFactory = new Factory(true, true);
