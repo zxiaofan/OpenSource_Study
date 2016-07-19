@@ -1,6 +1,6 @@
 /*
  * 文件名：SendMail.java
- * 版权：Copyright 2007-2015 517na Tech. Co. Ltd. All Rights Reserved. 
+ * 版权：Copyright 2007-2015 zxiaofan.com. Co. Ltd. All Rights Reserved. 
  * 描述： SendMail.java
  * 修改人：yunhai
  * 修改时间：2015年8月12日
