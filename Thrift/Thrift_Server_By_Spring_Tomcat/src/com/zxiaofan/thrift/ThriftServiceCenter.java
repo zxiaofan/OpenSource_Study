@@ -42,6 +42,11 @@ public class ThriftServiceCenter implements Runnable, InitializingBean, Disposab
     private TServer server;
 
     /**
+     * @thrift 服务中心
+     */
+    private Handler handler;
+
+    /**
      * @线程集合
      */
     private Map<String, Object> processorMap = new HashMap<String, Object>();
@@ -103,6 +108,7 @@ public class ThriftServiceCenter implements Runnable, InitializingBean, Disposab
                 processor.registerProcessor(interfaceName, pro);
             }
             server = new TThreadPoolServer(new TThreadPoolServer.Args(t).processor(processor));
+            // server.setServerEventHandler(new Handler()); // 不用gs路由必须注释此行
             logger.info("the server is started and is listening at " + port + "...");
             System.out.println("the server is started and is listening at " + port + "...");
             server.serve();
@@ -148,5 +154,4 @@ public class ThriftServiceCenter implements Runnable, InitializingBean, Disposab
     public void setServer(TServer server) {
         this.server = server;
     }
-
 }

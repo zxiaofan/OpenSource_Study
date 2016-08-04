@@ -9,7 +9,6 @@
 package com.zxiaofan.thriftServer.service;
 
 import org.apache.thrift.TException;
-import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Component;
 
 import com.zxiaofan.thrift.IThriftService.Iface;
@@ -20,7 +19,6 @@ import com.zxiaofan.thrift.IThriftService.Iface;
  */
 @Component("helloThrift")
 public class HelloThrift implements Iface {
-    FactoryBean b = null;
 
     /**
      * {@inheritDoc}.
