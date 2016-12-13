@@ -25,6 +25,10 @@ import org.apache.thrift.transport.TTransport;
  */
 public class Handler implements TServerEventHandler {
 
+    public Handler() {
+        super();
+    }
+
     /**
      * {@inheritDoc}.
      */
