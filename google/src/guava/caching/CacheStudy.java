@@ -22,6 +22,8 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.google.common.cache.RemovalListener;
+import com.google.common.cache.RemovalNotification;
 import com.google.common.cache.Weigher;
 
 /**
@@ -33,9 +35,20 @@ import com.google.common.cache.Weigher;
  */
 public class CacheStudy {
     /**
+     * 缓存项被移除时，RemovalListener会获取移除通知[RemovalNotification]，其中包含移除原因[RemovalCause]、键和值.
+     */
+    RemovalListener<String, String> listener = new RemovalListener<String, String>() {
+
+        @Override
+        public void onRemoval(RemovalNotification<String, String> notification) {
+            System.out.println("RemovalListener:" + notification.getKey() + "," + notification.getValue() + "," + notification.getCause());
+        }
+    };
+
+    /**
      * CacheBuilder生成器模式.
      */
-    LoadingCache<String, String> cahceBuilder = CacheBuilder.newBuilder().build(new CacheLoader<String, String>() {
+    LoadingCache<String, String> cahceBuilder = CacheBuilder.newBuilder().removalListener(listener).build(new CacheLoader<String, String>() {
         @Override
         public String load(String key) throws Exception {
             return "hello " + key;
@@ -180,6 +193,19 @@ public class CacheStudy {
         cahceBuilder.invalidateAll(Arrays.asList("k4", "k5")); // 批量清除
         System.out.println(cahceBuilder.asMap().toString());
         cahceBuilder.invalidateAll(); // 清除所有
+        System.out.println(cahceBuilder.asMap().toString());
+    }
+
+    /**
+     * 移除监听器.
+     * 
+     */
+    @Test
+    public void removeListenerTest() {
+        for (int i = 0; i < 6; i++) {
+            cahceBuilder.put("k" + i, "v" + i);
+        }
+        cahceBuilder.invalidate("k1");
         System.out.println(cahceBuilder.asMap().toString());
     }
 }
