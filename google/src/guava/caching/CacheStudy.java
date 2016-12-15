@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -23,6 +26,7 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.cache.RemovalListener;
+import com.google.common.cache.RemovalListeners;
 import com.google.common.cache.RemovalNotification;
 import com.google.common.cache.Weigher;
 
@@ -36,6 +40,7 @@ import com.google.common.cache.Weigher;
 public class CacheStudy {
     /**
      * 缓存项被移除时，RemovalListener会获取移除通知[RemovalNotification]，其中包含移除原因[RemovalCause]、键和值.
+     * 
      */
     RemovalListener<String, String> listener = new RemovalListener<String, String>() {
 
@@ -86,6 +91,16 @@ public class CacheStudy {
      * Cache-定时回收.
      */
     LoadingCache<String, String> cahceTime = CacheBuilder.newBuilder().expireAfterAccess(10, TimeUnit.SECONDS).build(new CacheLoader<String, String>() {
+        @Override
+        public String load(String key) {
+            return "hello " + key;
+        }
+    });
+
+    /**
+     * Cache-定时回收.
+     */
+    LoadingCache<String, String> cahceWriteTime = CacheBuilder.newBuilder().expireAfterWrite(10, TimeUnit.SECONDS).build(new CacheLoader<String, String>() {
         @Override
         public String load(String key) {
             return "hello " + key;
@@ -196,8 +211,26 @@ public class CacheStudy {
         System.out.println(cahceBuilder.asMap().toString());
     }
 
+    private Executor executor = Executors.newFixedThreadPool(3);
+
+    /**
+     * 异步 移除监听器.
+     */
+    LoadingCache<String, String> cahceAsyLis = CacheBuilder.newBuilder().removalListener(RemovalListeners.asynchronous(listener, executor)).build(new CacheLoader<String, String>() {
+
+        @Override
+        public String load(String key) throws Exception {
+            return "hello " + key;
+        }
+    });
+
     /**
      * 移除监听器.
+     * 
+     * 监听器方法是在移除缓存时同步调用的。因为缓存的维护和请求响应通常是同时进行的，代价高昂的监听器方法在同步模式下会拖慢正常的缓存请求。
+     * 
+     * 可以使用RemovalListeners.asynchronous(RemovalListener, Executor)把监听器装饰为异步操作。
+     * 
      * 
      */
     @Test
@@ -207,5 +240,60 @@ public class CacheStudy {
         }
         cahceBuilder.invalidate("k1");
         System.out.println(cahceBuilder.asMap().toString());
+    }
+
+    /**
+     * 何时会清理【主要在写操作、asMap时，偶尔读操作时】 & 实现定时清理.
+     * 
+     * CacheBuilder构建的缓存不会"自动"执行清理和回收工作，也不会在某个缓存项过期后马上清理，也没有诸如此类的清理机制。
+     * 
+     * 它会在【写操作、asMap】时顺带做少量的维护工作；如果写操作实在太少，会【偶尔在读操作】时做。
+     * 
+     * 如果要自动地持续清理缓存，就必须有一个线程，这个线程会和用户操作竞争共享锁。此外，某些环境下线程创建可能受限制，这样CacheBuilder就不可用了。
+     * 
+     * 如果缓存是高吞吐的，无需担心缓存的维护和清理。如果缓存只会偶尔有写操作，而你又不想清理工作阻碍了读操作，
+     * 
+     * 那么可以创建自己的维护线程，以固定的时间间隔调用Cache.cleanUp()。ScheduledExecutorService可以帮助你很好地实现这样的定时调度。
+     * 
+     * cleanUp() 并不会真正去remove键值对；可用invalidateAll()清除所有键值对。
+     * 
+     * @throws ExecutionException
+     * 
+     */
+    @Test
+    public void clearWhenTest() throws ExecutionException {
+        for (int i = 0; i < 6; i++) {
+            cahceTime.put("k" + i, "v" + i);
+        }
+        sleep(TimeUnit.SECONDS.toMillis(15)); // cahceTime:10s无读写则过期
+        System.out.println(cahceTime.get("k1")); // 虽然k1过期依旧输出 k1
+        System.out.println(cahceTime.get("k3")); // 虽然k2过期依旧输出 k3
+        System.out.println(cahceTime.asMap().toString()); // 仅剩 k1、k3
+        // cleanUp() 并不会真正去remove键值对；可用invalidateAll()清除所有键值对
+        for (int i = 0; i < 6; i++) {
+            cahceWriteTime.put("k" + i, "v" + i);
+        }
+        // 单独起线程 实现 定时回收
+        ScheduledExecutorService schedu = Executors.newScheduledThreadPool(1);
+        schedu.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                cahceWriteTime.cleanUp(); //
+            }
+        }, 0, 10, TimeUnit.SECONDS); // 初始化延迟0s，每隔10s执行一次
+        // System.out.println(cahceWriteTime.asMap().toString());
+        cahceWriteTime.cleanUp();
+        sleep(TimeUnit.SECONDS.toMillis(15)); // cahceTime:10s无读写则过期
+        cahceWriteTime.cleanUp();
+        System.out.println(cahceWriteTime.get("k1")); // 虽然k1过期依旧输出 k1 ?????
+        System.out.println(cahceWriteTime.get("k3")); // 虽然k2过期依旧输出 k3 ?????
+    }
+
+    private void sleep(long time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
