@@ -16,17 +16,33 @@ import java.util.Map.Entry;
 import org.junit.Test;
 
 import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multiset;
 
 /**
- * Multimap:get(key)==>Collection<>（可能为空集合但不会为null，asMap.get()可能返回null）
+ * Multimap:get(key)==>Collection<>（可能为空集合（默认容量为3）但不会为null，asMap.get()可能返回null）
  * 
  * 常使用ListMultimap或SetMultimap。
  * 
  * @author zxiaofan
  */
+// Multimap实现--key类似--value类似
+// ArrayListMultimap HashMap ArrayList
+// HashMultimap HashMap HashSet
+// LinkedListMultimap* LinkedHashMap* LinkedList*
+// LinkedHashMultimap** LinkedHashMap LinkedHashMap
+// TreeMultimap TreeMap TreeSet
+// ImmutableListMultimap ImmutableMap ImmutableList
+// ImmutableSetMultimap ImmutableMap ImmutableSet
+// 除了两个不可变形式的实现，其他所有实现都支持null键和null值;
+// LinkedListMultimap.entries()保留了所有键和值的迭代顺序;
+// LinkedHashMultimap保留了映射项的插入顺序，包括键插入的顺序，以及键映射的所有值的插入顺序.
 public class Multimap_Study {
+    /**
+     * 基本使用.
+     * 
+     */
     @Test
     public void basicTest() {
         Multimap<String, String> map = ArrayListMultimap.create(); // 类似于Map<String,List<String>>，不需要检查List中的对象是否存在
@@ -39,10 +55,14 @@ public class Multimap_Study {
         map.remove("b", "b1"); // ==>multimap.get(key).remove(value);移除指定key的指定value
         System.out.println(map.toString()); // {a=[a1], b=[b2]}
         map.removeAll("b"); // ==>multimap.get(key).clear();移除key对应的所有value
-        System.out.println(map.get("c")); // []
+        System.out.println(map.get("c")); // []，该空集合容量expectedValuesPerKey为默认值DEFAULT_VALUES_PER_KEY= 3
         System.out.println(map.replaceValues("a", Arrays.asList("aa"))); // 返回旧值[a1]
-        // replaceValues==>multimap.get(key).clear(); Iterables.addAll(multimap.get(key), values)
+        // replaceValues==>multimap.get(key).clear();
+        // Iterables.addAll(multimap.get(key), values)
         System.out.println(map);
+        System.out.println(map.containsKey("a")); // true
+        System.out.println(map.containsValue("aa")); // contains方法包含key、value、entry
+        System.out.println(map.containsEntry("a", "aa"));
     }
 
     /**
@@ -69,7 +89,7 @@ public class Multimap_Study {
         // entries不能转换为ListEntry<,>>，ClassCastException
         Collection<Entry<String, String>> keyValue = map.entries(); // 返回Multimap中所有”键-单个值映射”——包括重复键，（对SetMultimap，返回的是Set）
         for (Entry<String, String> entry : keyValue) {
-            System.out.println(entry.getKey() + "=" + entry.getValue()); // a=a1; a=a2; b=b1
+            System.out.println(entry.getKey() + "=" + entry.getValue()); // a=a1; a=a2;b=b1
         }
         System.out.println(map.toString()); // {a=[a1, a2], b=[b1]}
         //
@@ -95,6 +115,24 @@ public class Multimap_Study {
         for (String value : values) {
             System.out.println(value); // a1;a2;b1;a1
         }
+        //
+        System.out.println(map.toString());
+        // map.size()=map.keys().size()：key-value键值对的个数；map.keySet().size()：不同key的个数
+        System.out.println("map.size():" + map.size() + ",map.keys().size():" + map.keys().size() + ",map.keySet().size():" + map.keySet().size());
+    }
+
+    /**
+     * LinkedHashMultimap保留了映射项的插入顺序，包括键插入的顺序，以及键映射的所有值的插入顺序.
+     * 
+     */
+    @Test
+    public void LinkedHashMultimapTest() {
+        Multimap<String, String> map = LinkedHashMultimap.create();
+        map.put("c", "c2");
+        map.put("c", "c1");
+        map.put("a", "a1");
+        map.put("d", "d1");
+        System.out.println(map.toString()); // {c=[c2, c1], a=[a1], d=[d1]}
     }
 
     private Multimap<String, String> initMap() {
