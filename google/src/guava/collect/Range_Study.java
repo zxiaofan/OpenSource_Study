@@ -8,6 +8,7 @@
  */
 package guava.collect;
 
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
@@ -19,7 +20,7 @@ import com.google.common.collect.TreeRangeMap;
 import com.google.common.collect.TreeRangeSet;
 
 /**
- * RangeSet<C extends Comparable>
+ * RangeSet<C extends Comparable>、RangeMap
  * 
  * @author zxiaofan
  */
@@ -58,6 +59,8 @@ public class Range_Study {
      * RangeMap描述了”不相交的、非空的区间”到特定值的映射。和RangeSet不同，RangeMap不会合并相邻的映射，即便相邻的区间映射到相同的值.
      * 
      * put、remove即在原区间加入（覆盖）、移除部分区间。
+     * 
+     * RangeMap没有提供complement()、contains()、rangeContaining()以及encloses()方法,但支持交集subRangeMap。
      */
     @Test
     public void RangeMapTest() {
@@ -72,5 +75,11 @@ public class Range_Study {
         rangeMap.remove(Range.closed(4, 6));
         System.out.println(rangeMap); // [[1..4)=v1, (6..7]=v2, [9..10]=v3]
         System.out.println(rangeMap.get(2)); // v1
+        Map<Range<Integer>, String> map = rangeMap.asMapOfRanges(); // asMapOfRanges不可修改
+        System.out.println(map.containsKey(Range.closedOpen(1, 4))); // true，当前key集合
+        for (java.util.Map.Entry<Range<Integer>, String> entry : map.entrySet()) {
+            System.out.println("entry:" + entry.getKey() + "," + entry.getValue());
+        }
+        System.out.println(rangeMap.subRangeMap(key1)); // {[1..4)=v1}
     }
 }
