@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.google.common.base.CaseFormat;
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Splitter;
 
@@ -78,5 +79,39 @@ public class Splitter_Study {
         System.out.println(CharMatcher.javaDigit().replaceFrom("123a2c", "*")); // (***a*c)
         // 移除control字符（某一控制功能的字符，在ASCII码中，第0～31号及第127号(共33个)是控制字符或通讯专用字符，如控制符：LF（换行）、CR（回车）、FF（换页）、DEL（删除）、BS（退格)、BEL（振铃）等）
         System.out.println(CharMatcher.javaIsoControl().removeFrom("acd\rs/#@q")); // acds/#@q
+        // 枚举匹配字符
+        String res = CharMatcher.anyOf("aeiou").removeFrom("acd\rs/#@q");
+        System.out.println(res); // s/#@q
+    }
+
+    @Test
+    public void separatorTest() {
+        System.out.println("ee" + System.lineSeparator() + "ff"); // ee、ff分两行输出
+        System.out.println("a\rbc"); // bc
+        System.out.println("aaa\nbc"); // aaa、bc分两行输出
+        System.out.print("Hello World!\ra"); // run：a123o World!；debug:aello World!123
+        System.out.println(123); // 并不会单行输出
+        System.out.println(System.getProperty("line.separator").equals(System.lineSeparator())); // true，都是\r\n
+        // \n 换行,将当前位置移到下一行开头
+        // \r 回车,将当前位置移到本行开头,\r后的字符将挨个覆盖本行前面的字符
+        // 不同的系统、不同的应用可能做不同的处理。
+    }
+
+    /**
+     * 大小写格式.HYPHEN连字符,underscore下划线
+     * 
+     * LOWER_CAMEL:lowerCamel；UPPER_CAMEL:UpperCamel
+     * 
+     * LOWER_HYPHEN:lower-hyphen【没有UPPER-HYPHEN】
+     * 
+     * LOWER_UNDERSCORE:lower_underscore；UPPER_UNDERSCORE:UPPER_UNDERSCORE
+     * 
+     * 驼峰转换，写代码生成器时很有用
+     */
+    @Test
+    public void caseFormat() {
+        String str = "helloZxiaofanCom";
+        System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_HYPHEN, str)); // hello-zxiaofan-com
+        System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, str)); // HELLO_ZXIAOFAN_COM
     }
 }
