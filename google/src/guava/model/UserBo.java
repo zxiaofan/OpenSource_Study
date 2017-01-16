@@ -17,6 +17,15 @@ public class UserBo {
 
     private Integer age;
 
+    public UserBo() {
+        super();
+    }
+
+    public UserBo(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public String getName() {
         return name;
     }

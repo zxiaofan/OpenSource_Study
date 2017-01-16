@@ -27,6 +27,7 @@ import guava.model.UserBo;
  */
 public class ClassToInstanceMap_Study {
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @Test
     public void basicTest() {
         // MutableClassToInstanceMap
