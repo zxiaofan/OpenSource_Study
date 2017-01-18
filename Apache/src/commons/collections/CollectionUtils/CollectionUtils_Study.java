@@ -15,7 +15,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 import org.junit.Test;
 
-import commons.Student;
+import model.Student;
 
 /**
  * 从一个List中查找符合一定条件的对象.

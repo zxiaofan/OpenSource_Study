@@ -10,7 +10,7 @@ package commons.collections.CollectionUtils;
 
 import org.apache.commons.collections.Predicate;
 
-import commons.Student;
+import model.Student;
 
 /**
  * @author yunhai
