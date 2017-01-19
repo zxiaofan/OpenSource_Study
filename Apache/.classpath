@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="lib/poi/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="lib" path="lib/commons-beanutils-1.9.3-sources.jar"/>
 	<classpathentry kind="lib" path="lib/commons-beanutils-1.9.3.jar" sourcepath="lib/commons-beanutils-1.9.3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

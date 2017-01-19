@@ -21,20 +21,22 @@ import model.BigDestBo;
 public class BeanUtils_Study {
     @Test
     public void basicTest() {
-        // PropertyUtils_Study proper = new PropertyUtils_Study();
-        // List<BigSrcBo> list = proper.CreatListSrcBos(100);
         BigDestBo destBo1 = new BigDestBo();
         destBo1.setDoc_id("idsrc");
-        // destBo1.setDoc_type(1);
+        destBo1.setDoc_type(1);
         BigDestBo destBo2 = new BigDestBo();
         try {
             BeanUtils.copyProperties(destBo2, destBo1);
-        } catch (Exception e) { // BeanUtils【1.9版本前】不允许Date值为null
-            e.printStackTrace(); // No value specified for 'Date'
+        } catch (Exception e) { // BeanUtils【1.9版本前】不允许Date值为null,// No value specified for 'Date'
+            e.printStackTrace();
         }
-        System.out.println(destBo2.getDoc_id());
+        print(destBo2);
     }
 
+    /**
+     * ConvertUtils.register注册转换器.
+     * 
+     */
     @Test
     public void converterTest() {
         BigDestBo destBo1 = new BigDestBo();
@@ -44,8 +46,37 @@ public class BeanUtils_Study {
         BigDestBo destBo2 = new BigDestBo();
         try {
             BeanUtilsExtends.copyProperties(destBo2, destBo1);
-        } catch (Exception e) { // BeanUtils【1.9版本前】不允许Date值为null
-            e.printStackTrace(); // No value specified for 'Date'
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        print(destBo2);
+    }
+
+    /**
+     * 对指定字段赋指定值.
+     * 
+     */
+    @Test
+    public void otherTest() {
+        BigDestBo destBo2 = new BigDestBo();
+        try {
+            BeanUtils.copyProperty(destBo2, "doc_id", "id_new"); // 目标bean，目标字段，目标value
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        print(destBo2); // &doc_id=id_new&doc_type=0
+    }
+
+    /**
+     * 打印非空属性.
+     * 
+     * @param param
+     */
+    private void print(Object param) {
+        try {
+            System.out.println(util.BeanUtils.joinProperty(param));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

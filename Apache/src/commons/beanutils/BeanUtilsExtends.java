@@ -28,7 +28,7 @@ public class BeanUtilsExtends extends BeanUtils {
         // ConvertUtils.register(new DateConverter(), java.util.Date.class);
         //
         // 自定义String转换器
-        ConvertUtils.register(new Converter_String(), java.lang.Object.class); //
+        ConvertUtils.register(new Converter_String(), java.lang.Integer.class); // 【register不支持Object或Number这种大类型】
     }
 
     public static void copyProperties(Object target, Object source) throws IllegalAccessException, InvocationTargetException {
@@ -37,7 +37,9 @@ public class BeanUtilsExtends extends BeanUtils {
 }
 
 /**
- * 自定义转换
+ * 自定义转换.
+ * 
+ * 每个转换器只支持一种类型，so instanceof 派不上用场
  *
  */
 class Converter_String implements Converter {
@@ -46,16 +48,11 @@ class Converter_String implements Converter {
         if (null == arg1) {
             return null;
         }
-        if (arg1 instanceof String) {
-            String p = (String) arg1;
-            System.out.println(p + "_new");
-        } else if (arg1 instanceof Integer) { // Integer
-            System.out.println(arg1 + "_Integer");
-            return arg1 + "_Integer";
-        } else if (arg1.getClass().getTypeName().equals("java.lang.Integer")) { // int
-            System.out.println(arg1 + "_Integer");
-            return arg1 + "_int";
-        }
+        // if (arg1 instanceof Integer) { // Integer
+        System.out.println(arg1 + "_Integer");
+        // } else if (arg1.getClass().getTypeName().equals("java.lang.Integer")) { // int
+        // System.out.println(arg1 + "_int");
+        // }
         return arg1;
     }
 }
