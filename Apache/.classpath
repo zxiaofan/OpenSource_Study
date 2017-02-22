@@ -11,5 +11,7 @@
 	<classpathentry kind="lib" path="lib/commons-beanutils-1.9.3-sources.jar"/>
 	<classpathentry kind="lib" path="lib/commons-beanutils-1.9.3.jar" sourcepath="lib/commons-beanutils-1.9.3-sources.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/httpclient-4.5.3.jar" sourcepath="lib/httpcomponents-client-4.5.3-src.zip"/>
+	<classpathentry kind="lib" path="lib/httpcore-4.4.6.jar" sourcepath="lib/httpcomponents-client-4.5.3-src.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
