@@ -23,6 +23,16 @@ import junit.framework.TestCase;
 /**
  * 
  * @author zxiaofan
+ * 
+ *         connectionRequestTimout：从连接池获取连接的timeout
+ * 
+ *         connetionTimeout：客户端和服务器建立连接的timeout
+ * 
+ *         socketTimeout：指客户端从服务器读取数据的timeout
+ * 
+ *         【http请求3阶段：建立连接；数据传送；断开连接】
+ * 
+ *         超时时间说明（以上3个Timout均相同）：0无限超时；负数表示未定义（系统默认值）；默认-1。【建议自定义超时时间】
  */
 public class HttpClient_Create_Timeout extends TestCase {
     // 如果是extends TestCase，单元测试类必须以test(小写)开头
@@ -84,7 +94,7 @@ public class HttpClient_Create_Timeout extends TestCase {
     /**
      * 4.3版本.
      * 
-     * 4.3版本若不设置超时，一旦服务器没有响应，等待时间会很久很久
+     * 4.3版本若不设置超时（默认-1），一旦服务器没有响应，等待时间会很久很久（windows环境测试，连接等待10小时依旧未断开）
      */
     public void initHttpClient_43() {
         System.out.println("HttpClient 4.3版本初始化");
