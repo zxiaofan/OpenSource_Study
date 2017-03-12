@@ -43,3 +43,6 @@ By github.com/zxiaofan(https://github.com/zxiaofan/OpenSource_Study)
 **5.5、util.concurrent**  
 　　RateLimiter,令牌桶限流算法。  
   
+# 7、HttpService  
+**7.1、Spring/Tomcat搭建**  Http服务，支持Post、Get  
+
