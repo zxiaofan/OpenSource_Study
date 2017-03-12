@@ -5,9 +5,9 @@
 	id="WebApp_ID" version="3.0">
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>helloApi</param-value>
+		<param-value>HttpServer</param-value>
 	</context-param>
-	<display-name>helloApi</display-name>
+	<display-name>HttpServer</display-name>
 	<!-- <welcome-file-list>
 		<welcome-file>View/index.jsp</welcome-file>
 	</welcome-file-list> -->
@@ -20,8 +20,9 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<!-- 必须有servlet -->
  	<servlet>
-		<servlet-name>helloApi</servlet-name>
+		<servlet-name>HttpServer</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
@@ -32,7 +33,7 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet> 
 	<servlet-mapping>
-		<servlet-name>helloApi</servlet-name>
+		<servlet-name>HttpServer</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 	<filter>

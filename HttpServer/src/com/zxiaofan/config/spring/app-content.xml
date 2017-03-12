@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:task="http://www.springframework.org/schema/task" xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:task="http://www.springframework.org/schema/task" xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
@@ -11,37 +11,40 @@
     http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
     http://www.springframework.org/schema/aop 
     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>/WEB-INF/config/jdbc.properties</value>
-			</list>
-		</property>
-		<property name="fileEncoding" value="UTF8"></property>
-	</bean>
-	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
-
-	<context:component-scan base-package="com.zxiaofan"></context:component-scan>
-
-	<mvc:annotation-driven />
-	<mvc:default-servlet-handler />
-
-	<!-- 拦截器 -->
-	<!-- <mvc:interceptors> -->
-	<!-- <mvc:interceptor> -->
-	<!-- <mvc:mapping path="/**" /> -->
-	<!-- </mvc:interceptor> -->
-	<!-- </mvc:interceptors> -->
-	<!-- 视图解释类 -->
-
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/View/" />
-		<!-- 可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
-		<property name="suffix" value=".jsp" />
-	</bean>
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
-
+    <bean
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>/WEB-INF/config/jdbc.properties</value>
+            </list>
+        </property>
+        <property name="fileEncoding" value="UTF8"></property>
+    </bean>
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+    
+    
+    <context:component-scan base-package="com"></context:component-scan>
+    
+    
+    
+    <mvc:annotation-driven />
+    <mvc:default-servlet-handler/>
+    
+    <!-- 拦截器   -->
+<!-- <mvc:interceptors>   -->
+<!--         <mvc:interceptor> -->
+<!--             <mvc:mapping path="/**" /> -->
+<!--         </mvc:interceptor> -->
+<!--     </mvc:interceptors>  -->
+    <!-- 视图解释类 -->
+    
+    <bean
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/View/" />
+        <!-- 可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
+        <property name="suffix" value=".jsp" />
+    </bean>
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean> 
+    
+    
 </beans>
