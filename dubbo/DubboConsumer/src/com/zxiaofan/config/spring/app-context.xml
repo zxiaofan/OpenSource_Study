@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-4.3.xsd ">
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/config/jdbc.properties</value>
+			</list>
+		</property>
+		<property name="fileEncoding" value="UTF8"></property>
+	</bean>
+	<bean
+		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+
+	<!-- Aspect -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<context:component-scan base-package="com"></context:component-scan>
+    <import resource="classpath:com/zxiaofan/config/spring/dubbo-consumer.xml"/>
+
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+
+	<!-- 拦截器 -->
+	<!-- <mvc:interceptors> -->
+	<!-- <mvc:interceptor> -->
+	<!-- <mvc:mapping path="/**" /> -->
+	<!-- </mvc:interceptor> -->
+	<!-- </mvc:interceptors> -->
+	<!-- 视图解释类 -->
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/View/" />
+		<!-- 可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
+		<property name="suffix" value=".jsp" />
+	</bean>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+
+
+</beans>
