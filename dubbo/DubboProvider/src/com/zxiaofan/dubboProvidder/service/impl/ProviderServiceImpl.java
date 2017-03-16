@@ -8,10 +8,10 @@
  */
 package com.zxiaofan.dubboProvidder.service.impl;
 
-import java.util.Date;
-
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.zxiaofan.dubboProvidder.model.HelloBo;
 import com.zxiaofan.dubboProvidder.service.IProviderService;
 
 /**
@@ -19,16 +19,30 @@ import com.zxiaofan.dubboProvidder.service.IProviderService;
  * @author xiaofan
  */
 @Component("providerService")
- public class ProviderServiceImpl implements IProviderService {
+public class ProviderServiceImpl implements IProviderService {
+    @Value("${param.url}")
+    private String url;
 
     /**
      * {@inheritDoc}.
      */
     @Override
     public String helloBoy(String name) {
-        String result = "hello " + name + new Date().toString();
+        String result = "hello " + name + ", This is dubboProvider[" + url + "]";
         System.out.println(result);
         return result;
+    }
+
+    /**
+     * {@inheritDoc}.
+     */
+    @Override
+    public HelloBo helloGirl(HelloBo helloBo) {
+        if (null == helloBo.getName()) {
+            helloBo.setName("DefaultName");
+        }
+        helloBo.setUrl(helloBo.getName() + ":This is dubboProvider[csdn.zxiaofan.com]");
+        return helloBo;
     }
 
 }

@@ -18,7 +18,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/com/zxiaofan/test/config/app-context.xml")
 public class BaseTest {
+    // protected Logger logger = Logger.getLogger(BaseTest.class);
     static {
+        // try {
+        // // Log4jConfigurer.initLogging("WebContent/WEB-INF/log4j.properties"); // spring3.2.3可用，高版本4.3.7不推荐使用
+        // } catch (FileNotFoundException ex) {
+        // System.err.println("Cannot Initialize log4j");
+        // }
         System.out.println("SpringIOC...");
     }
 }

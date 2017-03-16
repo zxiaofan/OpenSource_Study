@@ -15,7 +15,7 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath:com/zxiaofan/test/config/jdbc.properties</value>
+				<value>classpath:com/zxiaofan/test/config/param.properties</value>
 			</list>
 		</property>
 		<property name="fileEncoding" value="UTF8"></property>
@@ -26,7 +26,7 @@
 	<!-- Aspect -->
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	<context:component-scan base-package="com.zxiaofan"></context:component-scan>
-    <import resource="classpath:com/zxiaofan/config/spring/dubbo-consumer.xml"/>
+    <import resource="classpath*:com/zxiaofan/config/spring/dubbo-consumer.xml"/>
 
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler />

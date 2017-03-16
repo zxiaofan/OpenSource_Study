@@ -10,27 +10,44 @@ package com.zxiaofan.dubboConsumer.service.impl;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.zxiaofan.dubboConsumer.provider.IProviderService;
 import com.zxiaofan.dubboConsumer.service.IConsumerService;
+import com.zxiaofan.dubboProvidder.model.HelloBo;
+import com.zxiaofan.dubboProvidder.service.IProviderService;
 
 /**
  * 
  * @author zxiaofan
  */
-@Component
+@Component("consumerService")
 public class ConsumerServiceImpl implements IConsumerService {
     @Resource(name = "providerService")
     private IProviderService providerService;
+
+    @Value("${param.url}")
+    private String url;
 
     /**
      * {@inheritDoc}.
      */
     @Override
     public String hi(String name) {
-        String result = providerService.helloBoy(name);
-        System.out.println("Consumer:" + result);
+        String result = null;
+        if (null != name && name.startsWith("boy")) {
+            System.out.println("Hi Boy!");
+            result = providerService.helloBoy(name.replace("boy", "~~~"));
+        } else {
+            HelloBo helloBo = new HelloBo();
+            helloBo.setName(name);
+            HelloBo helloBoResult = null;
+            helloBoResult = providerService.helloGirl(helloBo);
+            if (null != helloBoResult) {
+                result = helloBoResult.getUrl();
+            }
+        }
+        result += "; This is dubboConsumer[" + url + "]";
         return result;
     }
 

@@ -11,8 +11,8 @@
     <dubbo:application name="consumer"/>
 
     <!-- 使用dubbo协议   注册中心暴露服务地址 -->
-    <dubbo:registry protocol="dubbo"  address="dubbo://127.0.0.1:2181"/>
+    <dubbo:registry protocol="zookeeper"  address="zookeeper://127.0.0.1:2181"/>
 
     <!-- 生成远程服务代理，可以像使用本地bean一样使用demoService -->
-    <dubbo:reference id="providerService" interface="com.zxiaofan.dubboConsumer.provider.IProviderService"/>
+    <dubbo:reference id="providerService" interface="com.zxiaofan.dubboProvidder.service.IProviderService"/>
 </beans>

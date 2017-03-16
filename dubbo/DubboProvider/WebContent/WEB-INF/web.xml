@@ -5,6 +5,10 @@
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
    <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>DubboProvider</param-value>
+  </context-param>
+   <context-param>
     	<param-name>log4jConfigLocation</param-name>
     	<param-value>/WEB-INF/log4j.properties</param-value>
   </context-param>

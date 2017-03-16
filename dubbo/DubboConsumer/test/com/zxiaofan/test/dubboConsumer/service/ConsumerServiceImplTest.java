@@ -8,8 +8,9 @@
  */
 package com.zxiaofan.test.dubboConsumer.service;
 
+import javax.annotation.Resource;
+
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zxiaofan.dubboConsumer.service.IConsumerService;
 import com.zxiaofan.test.dubboConsumer.BaseTest;
@@ -19,7 +20,7 @@ import com.zxiaofan.test.dubboConsumer.BaseTest;
  * @author zxiaofan
  */
 public class ConsumerServiceImplTest extends BaseTest {
-    @Autowired
+    @Resource(name = "consumerService")
     private IConsumerService consumerService;
 
     /**
@@ -27,9 +28,10 @@ public class ConsumerServiceImplTest extends BaseTest {
      */
     @Test
     public void testHi() {
-        String name = "zxiaofan";
+        // String name = "boy_zxiaofan";
+        String name = "girl_zxiaofan";
         String result = consumerService.hi(name);
-        System.out.println("testResult:" + result);
+        System.out.println("TestDubboResult: " + result);
     }
 
 }
