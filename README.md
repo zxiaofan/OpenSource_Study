@@ -32,17 +32,21 @@ By github.com/zxiaofan(https://github.com/zxiaofan/OpenSource_Study)
 　　将thrift与spring、tomcat相结合，构建服务端。    
   
 # 6、google.guava  
-**5.1、cache**  
+**6.1、cache**  
 　　定时回收、容量回收、引用回收、监听器、缓存刷新、缓存统计、视图。  
-**5.2、collect**  
+**6.2、collect**  
 　　Multiset、Multimap、Table、BiMap、ClassToInstanceMap、RangeSet、RangeMap、Collections2(filter、ordered、transform)。  
-**5.3、base**  
+**6.3、base**  
 　　连接器Joiner、Splitter、separator、CaseFormat、\r\n。  
-**5.4、util.concurrent**  
+**6.4、util.concurrent**  
 　　RateLimiter,令牌桶限流算法。  
-**5.5、util.concurrent**  
+**6.5、util.concurrent**  
 　　RateLimiter,令牌桶限流算法。  
   
 # 7、HttpService  
 **7.1、Spring/Tomcat搭建**  Http服务，支持Post、Get  
-
+  
+# 8、Dubbo  
+**8.1、dubbo_Provider_Consumer_Tomcat搭建完整dubbo服务** 
+　　第三方Zookeeper作为注册中心；Provider提供服务；Consumer作为消费者同时对外开放Http接口。  
+ 
