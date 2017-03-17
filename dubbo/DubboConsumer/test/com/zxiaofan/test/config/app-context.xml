@@ -16,6 +16,7 @@
 		<property name="locations">
 			<list>
 				<value>classpath:com/zxiaofan/test/config/param.properties</value>
+				<value>classpath:com/zxiaofan/test/config/dubbo.properties</value>
 			</list>
 		</property>
 		<property name="fileEncoding" value="UTF8"></property>

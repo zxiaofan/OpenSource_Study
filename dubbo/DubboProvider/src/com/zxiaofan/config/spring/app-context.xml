@@ -16,6 +16,7 @@
 		<property name="locations">
 			<list>
 				<value>/WEB-INF/config/param.properties</value>
+				<value>/WEB-INF/config/dubbo.properties</value>
 			</list>
 		</property>
 		<property name="fileEncoding" value="UTF8"></property>
