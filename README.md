@@ -44,9 +44,15 @@ By github.com/zxiaofan(https://github.com/zxiaofan/OpenSource_Study)
 　　RateLimiter,令牌桶限流算法。  
   
 # 7、HttpService  
-**7.1、Spring/Tomcat搭建**  Http服务，支持Post、Get  
+**7.1、Spring/Tomcat搭建**  
+　　Http服务，支持Post、Get  
   
 # 8、Dubbo  
-**8.1、dubbo_Provider_Consumer_Tomcat搭建完整dubbo服务** 
+**8.1、dubbo_Provider_Consumer_Tomcat搭建完整dubbo服务**  
 　　第三方Zookeeper作为注册中心；Provider提供服务；Consumer作为消费者同时对外开放Http接口。  
+   
+# 9、SpringJDBC  
+**9.1、SpringJDBC基本使用，RowMapper<T>通用类**  
+　　详见/dubbo/DubboProvider/。  
+ 
  
