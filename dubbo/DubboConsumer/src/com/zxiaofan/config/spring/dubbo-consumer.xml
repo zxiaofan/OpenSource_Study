@@ -15,4 +15,5 @@
 
     <!-- 生成远程服务代理，可以像使用本地bean一样使用demoService -->
     <dubbo:reference id="providerService" interface="com.zxiaofan.dubboProvidder.service.IProviderService"  retries="${dubbo.retries}"  timeout="${dubbo.clientTimeout}"/>
+    <dubbo:reference id="userService" interface="com.zxiaofan.dubboProvidder.service.IUserService"  retries="${dubbo.retries}"  timeout="${dubbo.clientTimeout}"/>
 </beans>

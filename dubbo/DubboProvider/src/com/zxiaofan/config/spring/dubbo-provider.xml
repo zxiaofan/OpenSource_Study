@@ -16,11 +16,16 @@
 	<dubbo:protocol name="dubbo" port="${dubbo.port}" />
 	<!-- <dubbo: protocol="registry"></dubbo:monitor> -->
 
+	
+	<!-- 和本地bean一样实现服务 -->
+	<bean id="providerService" class="com.zxiaofan.dubboProvidder.service.impl.ProviderServiceImpl" />
+	<!-- 和本地bean一样实现服务 -->
+<!-- 	<bean id="userService" class="com.zxiaofan.dubboProvidder.service.impl.UserServiceImpl" />
+ -->	
 	<!-- 声明需要暴露的服务接口 -->
 	<dubbo:service interface="com.zxiaofan.dubboProvidder.service.IProviderService"
 		ref="providerService"  retries="${dubbo.retries}" timeout="${dubbo.serverTimeout}"/>
-
-	<!-- 和本地bean一样实现服务 -->
-	<bean id="providerService"
-		class="com.zxiaofan.dubboProvidder.service.impl.ProviderServiceImpl" />
+	<!-- 声明需要暴露的服务接口 -->
+	<dubbo:service interface="com.zxiaofan.dubboProvidder.service.IUserService"
+		ref="userService"  retries="${dubbo.retries}" timeout="${dubbo.serverTimeout}"/>
 </beans>

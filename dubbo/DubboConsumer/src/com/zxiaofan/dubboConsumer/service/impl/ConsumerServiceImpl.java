@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.zxiaofan.dubboConsumer.service.IConsumerService;
 import com.zxiaofan.dubboProvidder.model.HelloBo;
 import com.zxiaofan.dubboProvidder.service.IProviderService;
+import com.zxiaofan.dubboProvidder.service.IUserService;
 
 /**
  * 
@@ -25,6 +26,9 @@ import com.zxiaofan.dubboProvidder.service.IProviderService;
 public class ConsumerServiceImpl implements IConsumerService {
     @Resource(name = "providerService")
     private IProviderService providerService;
+
+    @Resource(name = "userService")
+    private IUserService userService;
 
     @Value("${param.url}")
     private String url;
@@ -38,6 +42,10 @@ public class ConsumerServiceImpl implements IConsumerService {
         if (null != name && name.startsWith("boy")) {
             System.out.println("Hi Boy!");
             result = providerService.helloBoy(name.replace("boy", "~~~"));
+        } else if (null != name && name.startsWith("select")) {
+            System.out.println("hi select!");
+            result = userService.selectByID(name.replace("select", ""));
+            return result;
         } else {
             HelloBo helloBo = new HelloBo();
             helloBo.setName(name);

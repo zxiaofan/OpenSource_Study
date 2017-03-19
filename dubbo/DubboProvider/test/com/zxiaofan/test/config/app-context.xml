@@ -15,9 +15,9 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>/WEB-INF/config/param.properties</value>
-				<value>/WEB-INF/config/dubbo.properties</value>
-				<value>/WEB-INF/config/jdbc.properties</value>
+				<value>classpath:com/zxiaofan/test/config/param.properties</value>
+				<value>classpath:com/zxiaofan/test/config/dubbo.properties</value>
+				<value>classpath:com/zxiaofan/test/config/jdbc.properties</value>
 			</list>
 		</property>
 		<property name="fileEncoding" value="UTF8"></property>
@@ -26,10 +26,10 @@
 		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
 
 	<!-- Aspect -->
-<!--	<aop:aspectj-autoproxy proxy-target-class="true" />-->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
 	<context:component-scan base-package="com.zxiaofan"></context:component-scan>
-    <import resource="classpath:com/zxiaofan/config/spring/dubbo-provider.xml"/>
-    <import resource="classpath:com/zxiaofan/config/spring/app-context-dataSource.xml"/>
+    <import resource="classpath*:com/zxiaofan/config/spring/dubbo-provider.xml"/>
+    <import resource="classpath*:com/zxiaofan/config/spring/app-context-dataSource.xml"/>
 
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler />
@@ -42,12 +42,12 @@
 	<!-- </mvc:interceptors> -->
 	<!-- 视图解释类 -->
 
-	<!-- <bean
+	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/View/" />
-		可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑
+		<!-- 可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
 		<property name="suffix" value=".jsp" />
-	</bean> -->
+	</bean>
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
 

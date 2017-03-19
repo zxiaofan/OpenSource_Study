@@ -2,6 +2,7 @@
     <wb-module deploy-name="DubboProvider">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
         <property name="context-root" value="DubboProvider"/>
         <property name="java-output-path" value="/DubboProvider/build/classes"/>
     </wb-module>
