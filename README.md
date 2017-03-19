@@ -52,7 +52,7 @@ By github.com/zxiaofan(https://github.com/zxiaofan/OpenSource_Study)
 　　第三方Zookeeper作为注册中心；Provider提供服务；Consumer作为消费者同时对外开放Http接口。  
    
 # 9、SpringJDBC  
-**9.1、SpringJDBC基本使用，RowMapper<T>通用类**  
+**9.1、SpringJDBC基本使用，RowMapper<T>通用类**  
 　　详见/dubbo/DubboProvider/。  
  
  
