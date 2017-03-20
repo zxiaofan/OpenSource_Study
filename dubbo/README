@@ -1,0 +1,13 @@
+#
+
+dubbo使用教程：http://blog.csdn.net/u010887744/article/details/6416076 (or csdn.zxiaofan.com)
+
+本dubbo使用教程基于zookeeper-3.4.9搭建，包含服务提供者DubboProvider、和消费者DubboConsumer，可直接在Tomcat上运行。  
+
+DubboProvider对外开放2个接口，DubboConsumer调用DubboProvider，并对外暴露HTTP服务。  
+
+DubboProvider还提供了对数据库的操作，基于SpringJDBC并加入了RowMapper通用类。  
+
+By zxiaofan.com  
+
+#
