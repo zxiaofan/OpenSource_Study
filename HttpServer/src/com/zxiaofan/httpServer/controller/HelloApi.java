@@ -90,7 +90,7 @@ public class HelloApi {
             buffer.append(request.getRequestURL());
             Map<String, String[]> params = request.getParameterMap();
             for (String key : params.keySet()) { // RequestMethod.GET模式只能获取url地址后面的参数
-                String[] values = params.get(key);
+                String[] values = params.get(key); // ParameterMap的value是String数组，是为了支持提交多个相同参数名的数据
                 if (values.length > 0) {
                     buffer.append("?");
                 }
