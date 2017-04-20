@@ -5,6 +5,8 @@
 2、默认均只对源bean和目标bean均有的属性做处理；
 3、PropertyUtils支持null；BeanUtils 1.9版本前部分类型不支持null，比如java.util.Date;
 4、BeanUtils支持自定义注册转换器ConvertUtils.register；
-5、性能：get/set > PropertyUtils > BeanUtils（）;
+5、性能：get/set > PropertyUtils > BeanUtils;
 6、可使用github.com/zxiaofan/JavaUtils下的BeanUtils，利用反射支持多种级别的赋值，比Apache快很多.
-7、PropertyUtils.copyProperties/BeanUtils.copyProperties均是浅拷贝（浅拷贝针对于拷贝对象内的嵌套对象）.如果拷贝的对象A内嵌套了对象C1，那么目标对象B引用的的依旧是C1而不是C2.
+7、PropertyUtils.copyProperties/BeanUtils.copyProperties均是浅拷贝（浅拷贝针对于拷贝对象内的嵌套对象）.
+A(C1)-->B：如果拷贝的对象A内嵌套了对象C1，那么目标对象B引用的的依旧是C1而不是C2.
+A直接属性（如Date）经copyProperties拷贝到B属于深拷贝，A中对象C拷贝到B属于浅拷贝。

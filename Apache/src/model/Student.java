@@ -8,6 +8,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  * module.
  * 
@@ -20,6 +22,8 @@ public class Student {
 
     private double grade;
 
+    private Date date;
+
     public Student() {
         super();
     }
@@ -28,6 +32,17 @@ public class Student {
         super();
         this.name = name;
         this.age = age;
+    }
+
+    /**
+     * 构造函数.
+     * 
+     */
+    public Student(String name, int age, Date date) {
+        super();
+        this.name = name;
+        this.age = age;
+        this.date = date;
     }
 
     public Student(String name, int age, double grade) {
@@ -57,6 +72,19 @@ public class Student {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Student [name=" + name + ", age=" + age + ", grade=" + grade + ", date=" + date + "]";
     }
 
 }
