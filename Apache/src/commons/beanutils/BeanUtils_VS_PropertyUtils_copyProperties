@@ -7,3 +7,4 @@
 4、BeanUtils支持自定义注册转换器ConvertUtils.register；
 5、性能：get/set > PropertyUtils > BeanUtils（）;
 6、可使用github.com/zxiaofan/JavaUtils下的BeanUtils，利用反射支持多种级别的赋值，比Apache快很多.
+7、PropertyUtils.copyProperties/BeanUtils.copyProperties均是浅拷贝（浅拷贝针对于拷贝对象内的嵌套对象）.如果拷贝的对象A内嵌套了对象C1，那么目标对象B引用的的依旧是C1而不是C2.
