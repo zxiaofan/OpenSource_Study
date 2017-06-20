@@ -55,4 +55,9 @@ By github.com/zxiaofan(https://github.com/zxiaofan/OpenSource_Study)
 **9.1、SpringJDBC基本使用，RowMapper<T>通用类**  
 　　详见/dubbo/DubboProvider/。  
  
+    
+# 10、Sourceforge  
+**10.1、SizeOf计算对象大小**  
+　　运行前添加VM参数：-javaagent:./lib/SizeOf.jar。  
+ 
  
