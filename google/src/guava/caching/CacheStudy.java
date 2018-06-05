@@ -35,6 +35,8 @@ import com.google.common.util.concurrent.ListenableFutureTask;
 
 /**
  * 如果你不需要Cache中的特性，使用ConcurrentHashMap有更好的内存效率。
+ * get(key) ：入参key不允许为null，否则抛异常com.google.common.cache.CacheLoader$InvalidCacheLoadException: CacheLoader returned null for key "key"；
+ * get(key) ：返回值不允许为null，否则抛异常java.lang.NullPointerException at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:770)。
  * 
  * @author zxiaofan
  */
