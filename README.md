@@ -61,3 +61,10 @@ By github.com/zxiaofan(https://github.com/zxiaofan/OpenSource_Study)
 　　运行前添加VM参数：-javaagent:./lib/SizeOf.jar。  
  
  
+---
+>祝君好运！<br>
+Life is all about choices！<br>
+将来的你一定会感激现在拼命的自己！<br>
+【[CSDN](https://blog.csdn.net/u010887744)】【[GitHub](https://github.com/zxiaofan)】【[OSCHINA](https://my.oschina.net/zxiaofan)】【[微信公众号](http://tc.zxiaofan.com/tc/zxiaofan_dyh.jpg)】    
+<img src="http://tc.zxiaofan.com/tc/zxiaofan_dyh.jpg"  height="150" width="150" alt="欢迎订阅zxiaofan的微信公众号，扫码或直接搜索zxiaofan">
+
