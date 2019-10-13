@@ -167,7 +167,8 @@ JSONObject jsonObjectB2 = JSONObject.parseObject(jsonArrayB.get(0).toString());
 # 5、总结
 - 正如文中总结，fastjson在升级到1.2.55及以上版本后，getJSONArray方法对Google的Gson处理后的数据兼容性降低，或许本文的名字叫做《fastjson与Gson混用引发的bug》更合适。
 - 代码规范：同一模块代码不允许混用Json解析工具；
-- 保持敬畏：生产发布，一定要保持敬畏，对变更充分回归。
+- 保持敬畏：生产发布，一定要保持敬畏，对变更充分回归；
+- 问题很简单，重要的是思考方式，在寻找答案的过程中学到更多。
 
 > 敬畏生命，敬畏职责，敬畏规章。    
 当你认为没有错误的时候，错误一定会来找你。    
