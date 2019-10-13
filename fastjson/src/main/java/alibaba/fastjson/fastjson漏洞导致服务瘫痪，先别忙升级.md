@@ -34,7 +34,7 @@ Exception in thread "xxx" com.alibaba.fastjson.JSONException: expect ':' at 0, a
 
 ![黑人问号](http://tc.zxiaofan.com/tc/a/emoji/heirenwenhao.jpg)
 
-&emsp;&emsp;本着对阿里技术的信任，我决定一探究竟。
+&emsp;&emsp;**本着对阿里技术的信任，我决定一探究竟。**
 
 # 3、一探究竟
 &emsp;&emsp;待反序列化的数据，其格式是2层List嵌套，测试代码已做脱敏处理（完整源码见后文github地址）：
@@ -47,17 +47,19 @@ JSONObject jsonObjectB2 = JSONObject.parseObject(jsonArrayB.get(0).toString());
 // 上面这行代码直接异常了，异常信息如下：
 // com.alibaba.fastjson.JSONException: expect ':' at 0, actual =
 ```
-&emsp;&emsp;经过debug发现，jsonArrayB.get(0).toString()的值是 {names=[zxiaofan]}。注意了，names后面是等号，不是冒号，这也就能解释为什么异常是“expect ':' at 0, actual =”了。
+&emsp;&emsp;好奇宝宝们就不要纠结于为什么没有定义好实体再使用TypeReference一步到位啦，千年老代码确实是这样的，这也不是本文的重点。    
+&emsp;&emsp;经过debug发现，jsonArrayB.get(0).toString()的值是 {names=[zxiaofan]}。注意了，names后面是等号，不是冒号，这也就能解释为什么异常是“expect ':' at 0, actual =”了。    
 &emsp;&emsp;但为什么升级后就异常，没升级就一切正常呢？继续研究下，梳理后发现如下值得注意的地方：
 - 1、fastjson版本时1.2.54时正常，大于1.2.54后便会异常；
-- 2、运行代码是Google的Gson和阿里的fastjson混用的（json处理全部换成fastjson一切正常）；
-莫非，是fastjson升级后和Google的Gson不兼容导致？
+- 2、运行代码是Google的Gson和阿里的fastjson混用的（json处理全部换成fastjson一切正常）；    
+
+&emsp;&emsp;莫非，是fastjson升级后和Google的Gson不兼容导致？
 
 **仿佛看到了曙光。**    
 
 ![看到了曙光](http://tc.zxiaofan.com/tc/a/emoji/kandaoleshuguang.jpg)
 
-对比分析了fastjson 1.2.54版本和其之后的版本（以下以1.2.55版本为例），发现getJSONArray(String key)还真有区别。
+&emsp;&emsp;对比分析了fastjson 1.2.54版本和其之后的版本（以下以1.2.55版本为例），发现getJSONArray(String key)还真有区别。
 
 ```java
 //  fastjson <version>1.2.54</version>
@@ -101,7 +103,7 @@ JSONObject jsonObjectB2 = JSONObject.parseObject(jsonArrayB.get(0).toString());
 &emsp;&emsp;从调试情况看，1.2.54版本最终返回的是JSONObect，1.2.55版本返回的是LinkedTreeMap。Map结构toString()的结构肯定是“key=value”，而不是json结构。    
 &emsp;&emsp;但是如果将测试代码中的GSON.fromJson替换成JSON.parseObject，那么不论fastjson的版本高低，都能正常运行。
 
-&emsp;&emsp;至此，我们知道了，**fastjson在升级到1.2.55及以上版本后，对Google的Gson兼容性降低，或许本文的名字叫做《fastjson与Gson混用引发的bug》更合适。**    
+&emsp;&emsp;至此，我们知道了，**fastjson在升级到1.2.55及以上版本后，getJSONArray方法对Google的Gson处理后的数据兼容性降低，或许本文的名字叫做《fastjson与Gson混用引发的bug》更合适。**    
 &emsp;&emsp;也不知道这算不算是bug，给官方提了个issue：
 > fastjson版本升级降低了对Gson的兼容性 #2814。
 
@@ -163,7 +165,7 @@ JSONObject jsonObjectB2 = JSONObject.parseObject(jsonArrayB.get(0).toString());
 ```
 
 # 5、总结
-- 正如文中总结，fastjson在升级到1.2.55及以上版本后，对Google的Gson兼容性降低，或许本文的名字叫做《fastjson与Gson混用引发的bug》更合适。
+- 正如文中总结，fastjson在升级到1.2.55及以上版本后，getJSONArray方法对Google的Gson处理后的数据兼容性降低，或许本文的名字叫做《fastjson与Gson混用引发的bug》更合适。
 - 代码规范：同一模块代码不允许混用Json解析工具；
 - 保持敬畏：生产发布，一定要保持敬畏，对变更充分回归。
 
@@ -172,6 +174,7 @@ JSONObject jsonObjectB2 = JSONObject.parseObject(jsonArrayB.get(0).toString());
 --《中国机长》
 
 本文相关分析代码：https://github.com/zxiaofan/OpenSource_Study/blob/master/fastjson/src/main/java/alibaba/fastjson/FastJsonBug.java    
+
 
     
 ---
