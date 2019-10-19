@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/OpenSource_Study.iml" filepath="$PROJECT_DIR$/.idea/OpenSource_Study.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fastjson/fastjson.iml" filepath="$PROJECT_DIR$/fastjson/fastjson.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-redis-lettuce/springboot-redis-lettuce.iml" filepath="$PROJECT_DIR$/springboot-redis-lettuce/springboot-redis-lettuce.iml" />
+    </modules>
+  </component>
+</project>
