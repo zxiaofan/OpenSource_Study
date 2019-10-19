@@ -3,6 +3,8 @@
 
 整理个人学习工作中的开源项目，欢迎有兴趣的朋友共同维护。  
 
+**由于以前的项目不是maven项目，项目中含有大量jar文件，让项目下载、传输非常不方便，后续本项目将转换成maven项目。原有各模块中的jar等文件可通过[Release_1.0](https://github.com/zxiaofan/OpenSource_Study/releases)下载。**
+
 By github.com/zxiaofan(https://github.com/zxiaofan/OpenSource_Study)
 
 =====================================================
