@@ -62,6 +62,11 @@ By github.com/zxiaofan(https://github.com/zxiaofan/OpenSource_Study)
 **10.1、SizeOf计算对象大小**  
 　　运行前添加VM参数：-javaagent:./lib/SizeOf.jar。  
  
+# 11、 redis（Redis相关脚本）  
+**11.1、查找Redis中没有设置过期时间的key**   
+&emsp;&emsp;shell脚本：checknottl.sh    
+&emsp;&emsp;python脚本：checknottl.py    
+
  
 ---
 >祝君好运！<br>
