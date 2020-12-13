@@ -25,3 +25,16 @@ no ttl keys number is : 300002
 the file of keys with no ttl: ./6378_0_no_ttl_keys.txt
 ```
 
+Redis Lua脚本：查询指定部门的所有上级部门，公众号 zxiaofan
+
+// 数据初始化，1的上级是2,2的上级是3,3的上级是4；公众号 zxiaofan
+```
+127.0.0.1:6378> HMSET depttree:001 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10
+OK
+```
+
+// 执行脚本
+```
+[redis@redis redis]$ ./openredis.sh 6378 "--eval luascript/lua_getAllSupDept.lua depttree:001 1 3 66"
+"1,2,3"
+```
