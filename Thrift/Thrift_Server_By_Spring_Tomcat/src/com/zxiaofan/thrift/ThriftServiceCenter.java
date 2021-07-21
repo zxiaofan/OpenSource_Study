@@ -103,7 +103,7 @@ public class ThriftServiceCenter implements Runnable, InitializingBean, Disposab
             // 将用户配置的接口加入到发布列表
             for (String interfaceName : set) {
                 Object o = processorMap.get(interfaceName);
-                // com.better517na.balAccDataService.service.Hello$Processor
+                // com.xxx.balAccDataService.service.Hello$Processor
                 Class<?> proClass = Class.forName(interfaceName + "$Processor");
                 Class<?> ifaceClass = Class.forName(interfaceName + "$Iface");
                 TProcessor pro = (TProcessor) proClass.getConstructor(ifaceClass).newInstance(o);
