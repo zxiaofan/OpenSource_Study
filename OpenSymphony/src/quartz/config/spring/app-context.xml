@@ -14,7 +14,7 @@
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "
 	>
 	
-<!-- 	<import resource="classpath:com/better517na/config/spring/app-context-quartz.xml"/>  -->
+<!-- 	<import resource="classpath:com/xxx/config/spring/app-context-quartz.xml"/>  -->
 	
     <bean id="scheduler" class="quartz.factory.SchedulerFactoryBean">  
 	</bean> 
